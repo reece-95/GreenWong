@@ -2,381 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenWong Lawn Care | Tauranga</title>
-    <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- 引入 FontAwesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- CSS 变量与重置 --- */
-        :root {
-            --primary-color: #4CAF50; /* 鲜艳的草坪绿 */
-            --secondary-color: #2E7D32; /* 深绿色 */
-            --accent-color: #FFC107; /* 辅助点缀色 */
-            --bg-light: #f4f9f4;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --white: #ffffff;
-            --transition: all 0.3s ease;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="page_title">GreenWong Lawn Care | Tauranga</title>
+    <meta name="description" content="Professional lawn mowing, garden maintenance and property cleanup in Tauranga, Mt Maunganui and Papamoa. Bilingual service in English and Chinese. Free quotes.">
+    <meta name="theme-color" content="#2E7D32">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- Open Graph: how the link looks when shared on Facebook, WeChat, etc. -->
+    <!-- TODO: add og:url (and a <link rel="canonical">) once the domain is live. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GreenWong Lawn Care">
+    <meta property="og:title" content="GreenWong Lawn Care | Tauranga">
+    <meta property="og:description" content="Lawn mowing, garden maintenance and cleanups in Tauranga & surrounds. English and Chinese spoken.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1200&h=630&q=80">
+    <meta property="og:locale" content="en_NZ">
+    <meta property="og:locale:alternate" content="zh_CN">
 
-        body {
-            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19c0-8 6-14 14-14 0 8-6 14-14 14z' fill='%234CAF50'/%3E%3Cpath d='M5 19l8-8'/%3E%3C/svg%3E">
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Only Poppins is downloaded. Chinese text uses the visitor's built-in Chinese font (see --font-zh). -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1920&q=80">
 
-        /* --- 导航栏 --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 1rem 5%;
-        }
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/i18n.js" defer></script>
+    <script src="js/main.js" defer></script>
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i { color: var(--primary-color); }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover { color: var(--primary-color); }
-
-        .lang-switch {
-            cursor: pointer;
-            border: 1px solid var(--primary-color);
-            padding: 5px 15px;
-            border-radius: 20px;
-            color: var(--primary-color);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .lang-switch:hover {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 20px;
-            margin-top: 60px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 30px;
-            background: var(--primary-color);
-            color: var(--white);
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-        }
-
-        /* --- 通用 Section --- */
-        section {
-            padding: 5rem 10%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .section-title p { color: var(--text-light); }
-
-        /* --- Services --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 { margin-bottom: 1rem; }
-
-        /* --- Pricing --- */
-        .pricing-section { background: var(--bg-light); }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        .pricing-header {
-            background: var(--secondary-color);
-            color: var(--white);
-            padding: 2rem;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-
-        .pricing-body { padding: 2rem; }
-        .pricing-body ul li { margin-bottom: 10px; color: var(--text-light); }
-
-        /* --- About --- */
-        .about-container {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .about-img {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .about-text { flex: 1; min-width: 300px; }
-
-        /* --- Testimonials (Carousel) --- */
-        .testimonials { background: var(--secondary-color); color: var(--white); }
-        .testimonials .section-title h2 { color: var(--white); }
-        .testimonials .section-title p { color: rgba(255,255,255,0.8); }
-
-        .carousel-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel-slide {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        .carousel-slide.active { display: block; animation: fadeIn 0.5s; }
-
-        .stars { color: var(--accent-color); margin-bottom: 1rem; }
-        .client-name { font-weight: 700; margin-top: 1rem; font-style: italic; }
-
-        .carousel-nav {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        .dot {
-            height: 10px;
-            width: 10px;
-            background-color: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        .dot.active { background-color: var(--white); transform: scale(1.2); }
-
-        /* --- Contact & Booking --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .contact-info h3 { margin-bottom: 1rem; color: var(--secondary-color); }
-        .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .contact-item i { color: var(--primary-color); font-size: 1.2rem; }
-
-        .map-container iframe {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            border: none;
-        }
-
-        .booking-form {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 15px;
-        }
-
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        .form-group textarea { height: 100px; resize: none; }
-
-        /* --- Footer --- */
-        footer {
-            background: #222;
-            color: var(--white);
-            text-align: center;
-            padding: 2rem;
-        }
-        .social-links { margin-top: 1rem; }
-        .social-links a { color: var(--white); margin: 0 10px; font-size: 1.5rem; transition: var(--transition); }
-        .social-links a:hover { color: var(--primary-color); }
-
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                right: 0;
-                top: 60px;
-                background: var(--white);
-                flex-direction: column;
-                width: 50%;
-                padding: 2rem;
-                box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
-            }
-            
-            .nav-links.active { transform: translateX(0); }
-            .menu-toggle { display: block; }
-            .hero h1 { font-size: 2.5rem; }
-            .pricing-card.popular { transform: scale(1); }
-        }
-    </style>
+    <!-- Structured data: helps Google show the business in local results. -->
+    <!-- TODO: add "telephone" and "url" once the real number and domain are confirmed. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "GreenWong Lawn Care",
+        "description": "Lawn mowing, garden maintenance and property cleanup in Tauranga and surrounds.",
+        "email": "reece@greenwong.co.nz",
+        "founder": { "@type": "Person", "name": "Reece Wong" },
+        "areaServed": ["Tauranga", "Mount Maunganui", "Papamoa"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Tauranga", "addressRegion": "Bay of Plenty", "addressCountry": "NZ" },
+        "priceRange": "NZ$80–250+",
+        "knowsLanguage": ["en", "zh"]
+    }
+    </script>
 </head>
 <body>
+    <!-- Icon sprite: replaces the whole Font Awesome library with the 11 icons this page uses. -->
+    <svg xmlns="http://www.w3.org/2000/svg" hidden>
+        <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+        <symbol id="i-mower" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6L20 18M8.6 16.4L20 6"/></symbol>
+        <symbol id="i-seedling" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12C12 8 9 5 4 5c0 4 3 7 8 7z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7z"/></symbol>
+        <symbol id="i-rake" viewBox="0 0 24 24"><path d="M12 3v11"/><path d="M5 14h14"/><path d="M6 14v6M10 14v6M14 14v6M18 14v6"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.4l-5.7 3 1.1-6.4-4.6-4.5 6.4-.9z"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    </svg>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">
-                <i class="fas fa-leaf"></i> GreenWong
-            </div>
+    <a class="skip-link" href="#main" data-i18n="skip_link">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="nav" aria-label="Main">
+            <a class="logo" href="#home">
+                <svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg>
+                <span>GreenWong</span>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" data-i18n="nav_home">Home</a></li>
                 <li><a href="#services" data-i18n="nav_services">Services</a></li>
@@ -384,411 +77,214 @@
                 <li><a href="#about" data-i18n="nav_about">About</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
             </ul>
-            <div style="display: flex; gap: 15px; align-items: center;">
-                <button class="lang-switch" id="langToggle">CN</button>
-                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div class="nav-actions">
+                <button type="button" class="lang-switch" id="langToggle" lang="zh-Hans" aria-label="Switch to Chinese">中文</button>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu">
+                    <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+                </button>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1 data-i18n="hero_title">Greener Lawns, Happier Homes!</h1>
-        <p data-i18n="hero_subtitle">Professional lawn care services in Tauranga & Surrounds.</p>
-        <a href="#contact" class="btn" data-i18n="hero_cta">Book Now</a>
-    </section>
+    <main id="main">
+        <section id="home" class="hero">
+            <h1 data-i18n="hero_title">Greener Lawns, Happier Homes!</h1>
+            <p data-i18n="hero_subtitle">Professional lawn care services in Tauranga &amp; Surrounds.</p>
+            <a href="#contact" class="btn" data-i18n="hero_cta">Book Now</a>
+        </section>
 
-    <!-- Services -->
-    <section id="services">
-        <div class="section-title">
-            <h2 data-i18n="services_title">Our Services</h2>
-            <p data-i18n="services_desc">We do the hard work so you don't have to.</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-cut"></i>
-                <h3 data-i18n="srv_mow_title">Lawn Mowing</h3>
-                <p data-i18n="srv_mow_desc">Professional mowing for all lawn sizes. Includes edging and clipping removal.</p>
+        <section id="services" class="section" aria-labelledby="services-title">
+            <div class="section-title">
+                <h2 id="services-title" data-i18n="services_title">Our Services</h2>
+                <p data-i18n="services_desc">We do the hard work so you don't have to.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-seedling"></i>
-                <h3 data-i18n="srv_garden_title">Garden Maintenance</h3>
-                <p data-i18n="srv_garden_desc">Weeding, pruning, and planting to keep your garden vibrant.</p>
+            <div class="services-grid">
+                <article class="service-card">
+                    <svg class="icon icon-lg" aria-hidden="true"><use href="#i-mower"/></svg>
+                    <h3 data-i18n="srv_mow_title">Lawn Mowing</h3>
+                    <p data-i18n="srv_mow_desc">Professional mowing for all lawn sizes. Includes edging and clipping removal.</p>
+                </article>
+                <article class="service-card">
+                    <svg class="icon icon-lg" aria-hidden="true"><use href="#i-seedling"/></svg>
+                    <h3 data-i18n="srv_garden_title">Garden Maintenance</h3>
+                    <p data-i18n="srv_garden_desc">Weeding, pruning, and planting to keep your garden vibrant.</p>
+                </article>
+                <article class="service-card">
+                    <svg class="icon icon-lg" aria-hidden="true"><use href="#i-rake"/></svg>
+                    <h3 data-i18n="srv_cleanup_title">Property Cleanup</h3>
+                    <p data-i18n="srv_cleanup_desc">Green waste removal and general tidying for a pristine look.</p>
+                </article>
             </div>
-            <div class="service-card">
-                <i class="fas fa-broom"></i>
-                <h3 data-i18n="srv_cleanup_title">Property Cleanup</h3>
-                <p data-i18n="srv_cleanup_desc">Green waste removal and general tidying for a pristine look.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="pricing-section">
-        <div class="section-title">
-            <h2 data-i18n="price_title">Simple Pricing</h2>
-            <p data-i18n="price_desc">Transparent rates for Tauranga residents.</p>
-        </div>
-        <div class="pricing-grid">
-            <!-- Small -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3 data-i18n="price_small_title">Small Lawn</h3>
-                    <div class="price">NZ$80-120</div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li data-i18n="price_area_small">100 - 200 m²</li>
-                        <li data-i18n="price_feature_1">Mowing & Edging</li>
-                        <li data-i18n="price_feature_2">Clippings Removal</li>
+        <section id="pricing" class="section section-tinted" aria-labelledby="pricing-title">
+            <div class="section-title">
+                <h2 id="pricing-title" data-i18n="price_title">Simple Pricing</h2>
+                <p data-i18n="price_desc">Transparent rates for Tauranga residents.</p>
+            </div>
+            <div class="pricing-grid">
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="price_small_title">Small Lawn</h3>
+                        <p class="price">NZ$80–120</p>
+                        <p class="price-area" data-i18n="price_area_small">100–200 m²</p>
+                    </div>
+                    <ul class="pricing-body">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_1">Mowing &amp; Edging</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_2">Clippings Removal</span></li>
                     </ul>
-                </div>
-            </div>
-            <!-- Medium -->
-            <div class="pricing-card popular">
-                <div class="pricing-header">
-                    <h3 data-i18n="price_med_title">Medium Lawn</h3>
-                    <div class="price">NZ$150-200</div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li data-i18n="price_area_med">200 - 400 m²</li>
-                        <li data-i18n="price_feature_1">Mowing & Edging</li>
-                        <li data-i18n="price_feature_2">Clippings Removal</li>
-                        <li data-i18n="price_feature_3">Basic Weeding</li>
+                </article>
+                <article class="pricing-card is-popular">
+                    <p class="popular-badge" data-i18n="price_popular">Most popular</p>
+                    <div class="pricing-header">
+                        <h3 data-i18n="price_med_title">Medium Lawn</h3>
+                        <p class="price">NZ$150–200</p>
+                        <p class="price-area" data-i18n="price_area_med">200–400 m²</p>
+                    </div>
+                    <ul class="pricing-body">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_1">Mowing &amp; Edging</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_2">Clippings Removal</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_3">Basic Weeding</span></li>
                     </ul>
-                </div>
-            </div>
-            <!-- Large -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3 data-i18n="price_large_title">Large Lawn</h3>
-                    <div class="price">NZ$250+</div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li data-i18n="price_area_large">400+ m²</li>
-                        <li data-i18n="price_feature_1">Mowing & Edging</li>
-                        <li data-i18n="price_custom">Full Garden Care</li>
+                </article>
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="price_large_title">Large Lawn</h3>
+                        <p class="price">NZ$250+</p>
+                        <p class="price-area" data-i18n="price_area_large">400+ m²</p>
+                    </div>
+                    <ul class="pricing-body">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_feature_1">Mowing &amp; Edging</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="price_custom">Full Garden Care</span></li>
                     </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="about-container">
+                <figure class="about-img">
+                    <!-- TODO: replace this stock photo with a real photo of Reece at work. -->
+                    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=80"
+                         alt="A freshly mown lawn" width="800" height="600" loading="lazy" decoding="async">
+                </figure>
+                <div class="about-text">
+                    <h2 id="about-title" data-i18n="about_title">About GreenWong</h2>
+                    <p class="founder" data-i18n="about_founder">Founder: Reece Wong</p>
+                    <p data-i18n="about_text_1">Hi, I'm Reece. GreenWong Lawn Care was founded with a simple mission: to bring professional, eco-friendly, and hassle-free lawn care to the Tauranga community.</p>
+                    <p data-i18n="about_text_2">We believe a well-kept lawn brings joy to a home. Whether it's regular mowing or a one-off cleanup, we treat every yard as if it were our own.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About -->
-    <section id="about">
-        <div class="about-container">
-            <div class="about-img">
-                <!-- Placeholder for Reece Wong's photo -->
-                <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=80" alt="Reece Wong GreenWong Lawn Care">
+        <!-- TODO: replace with real client reviews before launch (NZ Fair Trading Act covers fake reviews). -->
+        <section id="reviews" class="section testimonials" aria-labelledby="reviews-title">
+            <div class="section-title">
+                <h2 id="reviews-title" data-i18n="testi_title">What Our Clients Say</h2>
             </div>
-            <div class="about-text">
-                <h2 data-i18n="about_title">About GreenWong</h2>
-                <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Founder: Reece Wong</h4>
-                <p data-i18n="about_text_1">Hi, I'm Reece. GreenWong Lawn Care was founded with a simple mission: to bring professional, eco-friendly, and hassle-free lawn care to the Tauranga community.</p>
-                <br>
-                <p data-i18n="about_text_2">We believe a well-kept lawn brings joy to a home. Whether it's regular mowing or a one-off cleanup, we treat every yard as if it were our own.</p>
+            <div class="carousel" id="carousel" aria-roledescription="carousel">
+                <figure class="carousel-slide is-active">
+                    <p class="stars" role="img" aria-label="5 out of 5 stars" data-i18n-aria-label="stars_5"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></p>
+                    <blockquote data-i18n="testi_1">“Reece did an amazing job! My lawn has never looked this green. Highly recommended for anyone in Tauranga.”</blockquote>
+                    <figcaption class="client-name">Sarah J.</figcaption>
+                </figure>
+                <figure class="carousel-slide" aria-hidden="true">
+                    <p class="stars" role="img" aria-label="5 out of 5 stars" data-i18n-aria-label="stars_5"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></p>
+                    <blockquote data-i18n="testi_2">“Fast, efficient, and great communication. The bilingual service was a huge plus for my parents.”</blockquote>
+                    <figcaption class="client-name">Mike L.</figcaption>
+                </figure>
+                <figure class="carousel-slide" aria-hidden="true">
+                    <p class="stars" role="img" aria-label="5 out of 5 stars" data-i18n-aria-label="stars_5"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></p>
+                    <blockquote lang="zh-Hans">“Reece 真的很专业，把我的花园打理得井井有条。价格也很公道！”</blockquote>
+                    <figcaption class="client-name">Wang Wei</figcaption>
+                </figure>
             </div>
-        </div>
-    </section>
+            <div class="carousel-nav" id="carouselDots"></div>
+        </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="section-title">
-            <h2 data-i18n="testi_title">What Our Clients Say</h2>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-slide active">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p data-i18n="testi_1">"Reece did an amazing job! My lawn has never looked this green. Highly recommended for anyone in Tauranga."</p>
-                <div class="client-name">- Sarah J.</div>
+        <section id="contact" class="section" aria-labelledby="contact-title">
+            <div class="section-title">
+                <h2 id="contact-title" data-i18n="contact_title">Contact &amp; Booking</h2>
+                <p data-i18n="contact_desc">Get a free quote or book your service today.</p>
             </div>
-            <div class="carousel-slide">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p data-i18n="testi_2">"Fast, efficient, and great communication. The bilingual service was a huge plus for my parents."</p>
-                <div class="client-name">- Mike L.</div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-i18n="contact_info_title">Get In Touch</h3>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                            <!-- TODO: real phone number, then wrap in <a href="tel:+64211234567"> -->
+                            <span>021 123 4567 (Demo)</span>
+                        </li>
+                        <li class="contact-item">
+                            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                            <a href="mailto:reece@greenwong.co.nz">reece@greenwong.co.nz</a>
+                        </li>
+                        <li class="contact-item">
+                            <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                            <span data-i18n="location_text">Tauranga, Mt Maunganui, Papamoa</span>
+                        </li>
+                    </ul>
+                    <div class="map-container">
+                        <iframe title="Map of Tauranga" data-i18n-title="map_title"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50258.96042796784!2d176.1243853250153!3d-37.68957682856753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d3ee80402951e37%3A0x500ef6143a2b6f0!2sTauranga!5e0!3m2!1sen!2snz!4v1700000000000!5m2!1sen!2snz"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                        <a class="map-link" href="https://www.google.com/maps/place/Tauranga" target="_blank" rel="noopener" data-i18n="map_link">Open in Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- TODO: the form is still a mock; connect it to Formspree / Netlify Forms. Field names are ready. -->
+                <form class="booking-form" id="bookingForm">
+                    <h3 data-i18n="form_title">Request a Service</h3>
+
+                    <div class="form-group">
+                        <label for="f-name" data-i18n="form_name">Name</label>
+                        <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name" data-i18n-placeholder="form_ph_name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="f-phone" data-i18n="form_phone">Phone</label>
+                        <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="Your phone number" data-i18n-placeholder="form_ph_phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="f-service" data-i18n="form_service">Service Type</label>
+                        <select id="f-service" name="service">
+                            <option value="lawn_mowing" data-i18n="srv_mow_title">Lawn Mowing</option>
+                            <option value="garden_maint" data-i18n="srv_garden_title">Garden Maintenance</option>
+                            <option value="cleanup" data-i18n="srv_cleanup_title">Property Cleanup</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="f-date" data-i18n="form_date">Preferred Date</label>
+                        <input id="f-date" name="preferred_date" type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="f-message" data-i18n="form_message">Message (Optional)</label>
+                        <textarea id="f-message" name="message" rows="4" placeholder="Any specific requirements?" data-i18n-placeholder="form_ph_message"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-block" data-i18n="form_submit">Submit Request</button>
+                    <p class="form-status" id="formStatus" role="status" hidden></p>
+                </form>
             </div>
-            <div class="carousel-slide">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p data-i18n="testi_3">"Reece 真的很专业，把我的花园打理得井井有条。价格也很公道！"</p>
-                <div class="client-name">- Wang Wei</div>
-            </div>
-        </div>
-        <div class="carousel-nav" id="carouselDots">
-            <!-- Dots injected by JS -->
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact & Booking -->
-    <section id="contact">
-        <div class="section-title">
-            <h2 data-i18n="contact_title">Contact & Booking</h2>
-            <p data-i18n="contact_desc">Get a free quote or book your service today.</p>
-        </div>
-        <div class="contact-container">
-            <!-- Contact Info & Map -->
-            <div class="contact-info">
-                <h3 data-i18n="contact_info_title">Get In Touch</h3>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>021 123 4567 (Demo)</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>reece@greenwong.co.nz</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span data-i18n="location_text">Tauranga, Mt Maunganui, Papamoa</span>
-                </div>
-                
-                <!-- Google Maps Placeholder (Tauranga) -->
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50258.96042796784!2d176.1243853250153!3d-37.68957682856753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d3ee80402951e37%3A0x500ef6143a2b6f0!2sTauranga!5e0!3m2!1sen!2snz!4v1700000000000!5m2!1sen!2snz" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-
-            <!-- Booking Form -->
-            <form class="booking-form" id="bookingForm">
-                <h3 data-i18n="form_title" style="margin-bottom: 1.5rem; text-align:center;">Request a Service</h3>
-                
-                <div class="form-group">
-                    <label data-i18n="form_name">Name</label>
-                    <input type="text" required placeholder="Your Name / 您的姓名">
-                </div>
-
-                <div class="form-group">
-                    <label data-i18n="form_phone">Phone</label>
-                    <input type="tel" required placeholder="Your Phone / 电话号码">
-                </div>
-
-                <div class="form-group">
-                    <label data-i18n="form_service">Service Type</label>
-                    <select>
-                        <option value="lawn_mowing">Lawn Mowing / 上门除草</option>
-                        <option value="garden_maint">Garden Maintenance / 庭院维护</option>
-                        <option value="cleanup">Cleanup / 园艺整理</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label data-i18n="form_date">Preferred Date</label>
-                    <input type="date" required>
-                </div>
-
-                <div class="form-group">
-                    <label data-i18n="form_message">Message (Optional)</label>
-                    <textarea placeholder="Any specific requirements? / 有什么特殊要求吗？"></textarea>
-                </div>
-
-                <button type="submit" class="btn" style="width: 100%;" data-i18n="form_submit">Submit Request</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="logo" style="justify-content: center; color: var(--white); margin-bottom: 1rem;">
-            <i class="fas fa-leaf"></i> GreenWong
-        </div>
-        <p>&copy; 2023 GreenWong Lawn Care. All Rights Reserved.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-weixin"></i></a>
-        </div>
+    <footer class="site-footer">
+        <p class="logo logo-footer">
+            <svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg>
+            <span>GreenWong</span>
+        </p>
+        <p>&copy; <span id="year">2026</span> GreenWong Lawn Care. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        <!-- TODO: put real profile links in, or remove the ones you don't use. -->
+        <ul class="social-links">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#" data-i18n="social_wechat">WeChat</a></li>
+        </ul>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // --- Translations Data ---
-        const translations = {
-            en: {
-                nav_home: "Home",
-                nav_services: "Services",
-                nav_pricing: "Pricing",
-                nav_about: "About",
-                nav_contact: "Contact",
-                hero_title: "Greener Lawns, Happier Homes!",
-                hero_subtitle: "Professional lawn care services in Tauranga & Surrounds.",
-                hero_cta: "Book Now",
-                services_title: "Our Services",
-                services_desc: "We make your lawn look amazing without you lifting a finger!",
-                srv_mow_title: "Lawn Mowing",
-                srv_mow_desc: "Professional mowing for all lawn sizes. Includes edging and clipping removal.",
-                srv_garden_title: "Garden Maintenance",
-                srv_garden_desc: "Weeding, pruning, and planting to keep your garden vibrant.",
-                srv_cleanup_title: "Property Cleanup",
-                srv_cleanup_desc: "Green waste removal and general tidying for a pristine look.",
-                price_title: "Simple Pricing",
-                price_desc: "Transparent rates for Tauranga residents.",
-                price_small_title: "Small Lawn",
-                price_med_title: "Medium Lawn",
-                price_large_title: "Large Lawn",
-                price_area_small: "100 - 200 m²",
-                price_area_med: "200 - 400 m²",
-                price_area_large: "400+ m²",
-                price_feature_1: "Mowing & Edging",
-                price_feature_2: "Clippings Removal",
-                price_feature_3: "Basic Weeding",
-                price_custom: "Full Garden Care",
-                about_title: "About GreenWong",
-                about_text_1: "Hi, I'm Reece. GreenWong Lawn Care was founded with a simple mission: to bring professional, eco-friendly, and hassle-free lawn care to the Tauranga community.",
-                about_text_2: "We believe a well-kept lawn brings joy to a home. Whether it's regular mowing or a one-off cleanup, we treat every yard as if it were our own.",
-                testi_title: "What Our Clients Say",
-                testi_1: "\"Reece did an amazing job! My lawn has never looked this green. Highly recommended for anyone in Tauranga.\"",
-                testi_2: "\"Fast, efficient, and great communication. The bilingual service was a huge plus for my parents.\"",
-                testi_3: "\"Reece 真的很专业，把我的花园打理得井井有条。价格也很公道！\"",
-                contact_title: "Contact & Booking",
-                contact_desc: "Get a free quote or book your service today.",
-                contact_info_title: "Get In Touch",
-                location_text: "Tauranga, Mt Maunganui, Papamoa",
-                form_title: "Request a Service",
-                form_name: "Name",
-                form_phone: "Phone",
-                form_service: "Service Type",
-                form_date: "Preferred Date",
-                form_message: "Message (Optional)",
-                form_submit: "Submit Request"
-            },
-            zh: {
-                nav_home: "首页",
-                nav_services: "服务项目",
-                nav_pricing: "价格表",
-                nav_about: "关于我们",
-                nav_contact: "联系/预约",
-                hero_title: "更绿的草坪，更开心的家！",
-                hero_subtitle: "新西兰陶朗加及周边地区专业的草坪护理服务。",
-                hero_cta: "立即预约",
-                services_title: "我们的服务",
-                services_desc: "让您的草坪焕然一新，无需您亲自动手！",
-                srv_mow_title: "上门除草",
-                srv_mow_desc: "适用于各种大小的草坪。包含修边和碎草清理。",
-                srv_garden_title: "庭院维护",
-                srv_garden_desc: "除草、修剪和种植，让您的花园保持活力。",
-                srv_cleanup_title: "园艺整理",
-                srv_cleanup_desc: "清除绿色垃圾和整体整理，打造整洁外观。",
-                price_title: "服务价格",
-                price_desc: "价格透明，服务陶朗加居民。",
-                price_small_title: "小型庭院",
-                price_med_title: "中型庭院",
-                price_large_title: "大型庭院",
-                price_area_small: "100 - 200 平方米",
-                price_area_med: "200 - 400 平方米",
-                price_area_large: "400+ 平方米",
-                price_feature_1: "除草 & 修边",
-                price_feature_2: "碎草清理",
-                price_feature_3: "基础除杂草",
-                price_custom: "全方位园艺护理",
-                about_title: "关于 GreenWong",
-                about_text_1: "嗨，我是 Reece。创立 GreenWong Lawn Care 的初衷很简单：为陶朗加社区带来专业、环保且轻松的草坪护理服务。",
-                about_text_2: "我们相信整洁的草坪能为一个家带来快乐。无论是定期除草还是单次清理，我们都像对待自己家一样对待每一个院子。",
-                testi_title: "客户评价",
-                testi_1: "\"Reece 干得太棒了！我的草坪从未如此翠绿。强烈推荐给陶朗加的朋友们。\"",
-                testi_2: "\"高效、快捷，沟通顺畅。中英双语服务对我的父母来说非常方便。\"",
-                testi_3: "\"Reece 真的很专业，把我的花园打理得井井有条。价格也很公道！\"",
-                contact_title: "联系与预约",
-                contact_desc: "获取免费报价或立即预订服务。",
-                contact_info_title: "联系方式",
-                location_text: "陶朗加, 芒格努伊山, 帕帕莫阿",
-                form_title: "预约服务",
-                form_name: "姓名",
-                form_phone: "电话",
-                form_service: "服务类型",
-                form_date: "期望日期",
-                form_message: "留言 (选填)",
-                form_submit: "提交预约"
-            }
-        };
-
-        // --- Logic ---
-        let currentLang = 'en';
-        const langToggle = document.getElementById('langToggle');
-
-        // Language Switcher Function
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'zh' : 'en';
-            langToggle.textContent = currentLang === 'en' ? 'CN' : 'EN';
-            updateContent();
-        });
-
-        function updateContent() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    element.textContent = translations[currentLang][key];
-                }
-            });
-        }
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Testimonial Carousel Logic
-        let slideIndex = 0;
-        const slides = document.getElementsByClassName("carousel-slide");
-        const dotsContainer = document.getElementById("carouselDots");
-
-        // Create Dots
-        for(let i=0; i<slides.length; i++) {
-            let dot = document.createElement("span");
-            dot.className = "dot";
-            dot.onclick = () => showSlide(i);
-            dotsContainer.appendChild(dot);
-        }
-        const dots = document.getElementsByClassName("dot");
-
-        function showSlide(n) {
-            slideIndex = n;
-            if (n >= slides.length) slideIndex = 0;
-            if (n < 0) slideIndex = slides.length - 1;
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-                dots[i].classList.remove("active");
-            }
-            slides[slideIndex].classList.add("active");
-            dots[slideIndex].classList.add("active");
-        }
-
-        // Auto-play carousel
-        showSlide(0);
-        setInterval(() => {
-            showSlide(slideIndex + 1);
-        }, 5000);
-
-        // Form Submission Mock
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const msg = currentLang === 'en' 
-                ? "Thank you! Your request has been sent to Reece. We will contact you shortly." 
-                : "谢谢！您的请求已发送给 Reece。我们会尽快联系您。";
-            alert(msg);
-            this.reset();
-        });
-
-        // Smooth Scroll for Safari/older browsers
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
